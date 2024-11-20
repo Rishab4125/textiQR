@@ -34,7 +34,8 @@ elif menu == "Scan QR Code":
         st.image(image, caption="Uploaded QR Code", use_column_width=True)
         opencv_image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
         # detector = cv2.QRCodeDetector()
-        data = QReader.detect_and_decode(image=opencv_image)
+        qreader = QReader()
+        data = qreader.detect_and_decode(image=opencv_image)
         # data, _, _ = detector.detectAndDecode(opencv_image)
         if data:
             st.success(f"Decoded Data: {data}")
