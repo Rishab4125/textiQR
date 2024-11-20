@@ -1,6 +1,7 @@
 import streamlit as st
 from qreader import QReader
 from PIL import Image
+import cv2
 
 st.title("QR Code Scanner using qreader")
 
