@@ -1,54 +1,54 @@
-# import streamlit as st
-# from pyzbar.pyzbar import decode
-# from PIL import Image
+import streamlit as st
+from pyzbar.pyzbar import decode
+from PIL import Image
 
-# # Title of the app
-# st.title("QR Code Scanner - Upload or Camera")
+# Title of the app
+st.title("QR Code Scanner - Upload or Camera")
 
-# # Option to either upload an image or take a picture
-# option = st.radio("Choose an option", ("Upload an image", "Take a picture from camera"))
+# Option to either upload an image or take a picture
+option = st.radio("Choose an option", ("Upload an image", "Take a picture from camera"))
 
-# # Layout to display options
-# col1, col2 = st.columns([3, 7])  # Larger width for the camera input
+# Layout to display options
+col1, col2 = st.columns([7, 17])  # Larger width for the camera input
 
-# if option == "Upload an image":
-#     # File uploader for the QR code image
-#     uploaded_file = st.file_uploader("Upload a QR Code image", type=["png", "jpg", "jpeg"])
+if option == "Upload an image":
+    # File uploader for the QR code image
+    uploaded_file = st.file_uploader("Upload a QR Code image", type=["png", "jpg", "jpeg"])
     
-#     if uploaded_file:
-#         # Load and display the uploaded image
-#         image = Image.open(uploaded_file)
-#         st.image(image, caption="Uploaded QR Code", use_column_width=True)
+    if uploaded_file:
+        # Load and display the uploaded image
+        image = Image.open(uploaded_file)
+        st.image(image, caption="Uploaded QR Code", use_column_width=True)
 
-#         # Decode the QR code using pyzbar
-#         decoded_data = decode(image)
+        # Decode the QR code using pyzbar
+        decoded_data = decode(image)
         
-#         if decoded_data:
-#             for obj in decoded_data:
-#                 qr_data = obj.data.decode('utf-8')
-#                 st.success(f"Decoded Data: {qr_data}")
-#         else:
-#             st.warning("No QR Code detected.")
+        if decoded_data:
+            for obj in decoded_data:
+                qr_data = obj.data.decode('utf-8')
+                st.success(f"Decoded Data: {qr_data}")
+        else:
+            st.warning("No QR Code detected.")
 
-# elif option == "Take a picture from camera":
-#     with col2:  # Use col2 (larger column) for the camera
-#         # Camera input widget
-#         camera_image = st.camera_input("Capture a QR Code")
+elif option == "Take a picture from camera":
+    with col2:  # Use col2 (larger column) for the camera
+        # Camera input widget
+        camera_image = st.camera_input("Capture a QR Code")
 
-#         if camera_image:
-#             # Load and display the captured image
-#             image = Image.open(camera_image)
-#             st.image(image, caption="Captured QR Code", use_column_width=True)
+        if camera_image:
+            # Load and display the captured image
+            image = Image.open(camera_image)
+            st.image(image, caption="Captured QR Code", use_column_width=True)
 
-#             # Decode the QR code using pyzbar
-#             decoded_data = decode(image)
+            # Decode the QR code using pyzbar
+            decoded_data = decode(image)
             
-#             if decoded_data:
-#                 for obj in decoded_data:
-#                     qr_data = obj.data.decode('utf-8')
-#                     st.success(f"Decoded Data: {qr_data}")
-#             else:
-#                 st.warning("No QR Code detected.")
+            if decoded_data:
+                for obj in decoded_data:
+                    qr_data = obj.data.decode('utf-8')
+                    st.success(f"Decoded Data: {qr_data}")
+            else:
+                st.warning("No QR Code detected.")
 
 
 
@@ -120,79 +120,79 @@
 
 
 
-import streamlit as st
-from pyzbar.pyzbar import decode
-from PIL import Image
-import streamlit.components.v1 as components
+# import streamlit as st
+# from pyzbar.pyzbar import decode
+# from PIL import Image
+# import streamlit.components.v1 as components
 
-# Custom component to control camera input behavior (front/rear camera selection)
-components.html("""
-    <script>
-        const constraints = {
-            video: {
-                facingMode: "environment"  // 'environment' for rear camera on mobile
-            }
-        };
+# # Custom component to control camera input behavior (front/rear camera selection)
+# components.html("""
+#     <script>
+#         const constraints = {
+#             video: {
+#                 facingMode: "environment"  // 'environment' for rear camera on mobile
+#             }
+#         };
 
-        const videoElement = document.querySelector('video');
-        if (videoElement) {
-            navigator.mediaDevices.getUserMedia(constraints)
-                .then((stream) => {
-                    videoElement.srcObject = stream;
-                })
-                .catch((err) => {
-                    console.error("Error accessing the camera:", err);
-                });
-        }
-    </script>
-""", height=0)
+#         const videoElement = document.querySelector('video');
+#         if (videoElement) {
+#             navigator.mediaDevices.getUserMedia(constraints)
+#                 .then((stream) => {
+#                     videoElement.srcObject = stream;
+#                 })
+#                 .catch((err) => {
+#                     console.error("Error accessing the camera:", err);
+#                 });
+#         }
+#     </script>
+# """, height=0)
 
-# Title of the app
-st.title("QR Code Scanner - Upload or Camera")
+# # Title of the app
+# st.title("QR Code Scanner - Upload or Camera")
 
-# Option to either upload an image or take a picture
-option = st.radio("Choose an option", ("Upload an image", "Take a picture from camera"))
+# # Option to either upload an image or take a picture
+# option = st.radio("Choose an option", ("Upload an image", "Take a picture from camera"))
 
-if option == "Upload an image":
-    # File uploader for the QR code image
-    uploaded_file = st.file_uploader("Upload a QR Code image", type=["png", "jpg", "jpeg"])
+# if option == "Upload an image":
+#     # File uploader for the QR code image
+#     uploaded_file = st.file_uploader("Upload a QR Code image", type=["png", "jpg", "jpeg"])
     
-    if uploaded_file:
-        # Load and display the uploaded image
-        image = Image.open(uploaded_file)
-        st.image(image, caption="Uploaded QR Code", use_column_width=True)
+#     if uploaded_file:
+#         # Load and display the uploaded image
+#         image = Image.open(uploaded_file)
+#         st.image(image, caption="Uploaded QR Code", use_column_width=True)
 
-        # Decode the QR code using pyzbar
-        decoded_data = decode(image)
+#         # Decode the QR code using pyzbar
+#         decoded_data = decode(image)
         
-        if decoded_data:
-            for obj in decoded_data:
-                qr_data = obj.data.decode('utf-8')
-                st.success(f"Decoded Data: {qr_data}")
-        else:
-            st.warning("No QR Code detected.")
+#         if decoded_data:
+#             for obj in decoded_data:
+#                 qr_data = obj.data.decode('utf-8')
+#                 st.success(f"Decoded Data: {qr_data}")
+#         else:
+#             st.warning("No QR Code detected.")
 
-elif option == "Take a picture from camera":
-    # Camera input widget (default camera behavior)
-    camera_image = st.camera_input("Capture a QR Code")
+# elif option == "Take a picture from camera":
+#     # Camera input widget (default camera behavior)
+#     camera_image = st.camera_input("Capture a QR Code")
 
-    if camera_image:
-        # Load and display the captured image
-        image = Image.open(camera_image)
+#     if camera_image:
+#         # Load and display the captured image
+#         image = Image.open(camera_image)
         
-        # Resize the image to make it larger if necessary
-        image = image.resize((image.width * 2, image.height * 2))  # Scale up by 2x (adjust as needed)
+#         # Resize the image to make it larger if necessary
+#         image = image.resize((image.width * 2, image.height * 2))  # Scale up by 2x (adjust as needed)
         
-        st.image(image, caption="Captured QR Code", use_column_width=True)
+#         st.image(image, caption="Captured QR Code", use_column_width=True)
 
-        # Decode the QR code using pyzbar
-        decoded_data = decode(image)
+#         # Decode the QR code using pyzbar
+#         decoded_data = decode(image)
         
-        if decoded_data:
-            for obj in decoded_data:
-                qr_data = obj.data.decode('utf-8')
-                st.success(f"Decoded Data: {qr_data}")
-        else:
-            st.warning("No QR Code detected.")
+#         if decoded_data:
+#             for obj in decoded_data:
+#                 qr_data = obj.data.decode('utf-8')
+#                 st.success(f"Decoded Data: {qr_data}")
+#         else:
+#             st.warning("No QR Code detected.")
 
 
