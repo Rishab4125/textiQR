@@ -1,3 +1,5 @@
 streamlit
 qreader
 pillow
+cv2
+pyzbar
