@@ -3,3 +3,4 @@ qreader
 qrcode[pil]
 pillow
 opencv-python-headless
+cv2
