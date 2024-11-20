@@ -9,7 +9,7 @@ st.title("QR Code Scanner - Upload or Camera")
 option = st.radio("Choose an option", ("Upload an image", "Take a picture from camera"))
 
 # Layout to display options
-col1, col2 = st.columns([3, 7])  # Larger width for the camera input
+col1, col2 = st.columns([6, 7])  # Larger width for the camera input
 
 if option == "Upload an image":
     # File uploader for the QR code image
