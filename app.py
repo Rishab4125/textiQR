@@ -54,16 +54,6 @@ import streamlit as st
 from pyzbar.pyzbar import decode
 from PIL import Image
 
-# Inject custom CSS for larger camera window
-st.markdown("""
-    <style>
-        .stCamera { 
-            width: 100% !important;
-            height: 500px !important;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
 # Title of the app
 st.title("QR Code Scanner - Upload or Camera")
 
@@ -91,10 +81,22 @@ if option == "Upload an image":
                 st.success(f"Decoded Data: {qr_data}")
         else:
             st.warning("No QR Code detected.")
+            
 
 elif option == "Take a picture from camera":
     with col2:  # Use col2 (larger column) for the camera
         # Camera input widget
+        # Inject custom CSS for larger camera window
+        
+        st.markdown("""
+            <style>
+                .stCamera { 
+                    width: 100% !important;
+                    height: 500px !important; /* Adjust height */
+                }
+            </style>
+        """, unsafe_allow_html=True)
+        
         camera_image = st.camera_input("Capture a QR Code")
 
         if camera_image:
