@@ -1,8 +1,10 @@
 import streamlit as st
 import qrcode
+import qreader from QReader
 from PIL import Image
 import cv2
 import numpy as np
+
 
 st.title("QR Code Generator & Scanner")
 
@@ -31,8 +33,9 @@ elif menu == "Scan QR Code":
         image = Image.open(uploaded_file)
         st.image(image, caption="Uploaded QR Code", use_column_width=True)
         opencv_image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-        detector = cv2.QRCodeDetector()
-        data, _, _ = detector.detectAndDecode(opencv_image)
+        # detector = cv2.QRCodeDetector()
+        data = QReader.detect_and_decode(image=opencv_image)
+        # data, _, _ = detector.detectAndDecode(opencv_image)
         if data:
             st.success(f"Decoded Data: {data}")
         else:
