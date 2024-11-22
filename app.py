@@ -2,8 +2,6 @@ import streamlit as st
 from pyzbar.pyzbar import decode
 from qreader import QReader
 from PIL import Image
-# import cv2
-# import numpy as np
 
 # Title of the app
 st.title("QR Code Scanner - Upload or Camera")
@@ -28,7 +26,6 @@ if option == "Upload an image":
 
         # Decode the QR code using pyzbar
         # decoded_data = decode(image)
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         decoded_data = qr_reader.detect_and_decode(image=image)
         
         if decoded_data:
@@ -51,7 +48,6 @@ elif option == "Take a picture from camera":
 
         # Decode the QR code using pyzbar
         # decoded_data = decode(image)
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         decoded_data = qr_reader.detect_and_decode(image=image)
         
         if decoded_data:
