@@ -38,7 +38,7 @@ elif option == "Take a picture from camera":
         if camera_image:
             # Load and display the captured image
             image = Image.open(camera_image)
-            st.image(image, caption="Captured QR Code", use_column_width=True)
+            st.image(image, caption="Captured QR Code", width=30)
 
             # Decode the QR code using pyzbar
             decoded_data = decode(image)
