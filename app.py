@@ -2,6 +2,8 @@ import streamlit as st
 from pyzbar.pyzbar import decode
 from qreader import QReader
 from PIL import Image
+import cv2
+import numy as np
 
 # Title of the app
 st.title("QR Code Scanner - Upload or Camera")
