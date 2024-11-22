@@ -31,24 +31,24 @@ if option == "Upload an image":
             st.warning("No QR Code detected.")
 
 elif option == "Take a picture from camera":
-    with col2:  # Use col2 (larger column) for the camera
+    # with col2:  # Use col2 (larger column) for the camera
         # Camera input widget
-        camera_image = st.camera_input("Capture a QR Code")
+    camera_image = st.camera_input("Capture a QR Code")
 
-        if camera_image:
-            # Load and display the captured image
-            image = Image.open(camera_image)
-            st.image(image, caption="Captured QR Code", width=None)
+    if camera_image:
+        # Load and display the captured image
+        image = Image.open(camera_image)
+        st.image(image, caption="Captured QR Code", width=None)
 
-            # Decode the QR code using pyzbar
-            decoded_data = decode(image)
-            
-            if decoded_data:
-                for obj in decoded_data:
-                    qr_data = obj.data.decode('utf-8')
-                    st.success(f"Decoded Data: {qr_data}")
-            else:
-                st.warning("No QR Code detected.")
+        # Decode the QR code using pyzbar
+        decoded_data = decode(image)
+        
+        if decoded_data:
+            for obj in decoded_data:
+                qr_data = obj.data.decode('utf-8')
+                st.success(f"Decoded Data: {qr_data}")
+        else:
+            st.warning("No QR Code detected.")
 
 
 
