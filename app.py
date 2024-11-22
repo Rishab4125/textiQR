@@ -1,6 +1,6 @@
 import streamlit as st
 from pyzbar.pyzbar import decode
-from qreader import QReader
+# from qreader import QReader
 from PIL import Image
 
 # Title of the app
@@ -25,13 +25,13 @@ if option == "Upload an image":
         st.image(image, caption="Uploaded QR Code", use_column_width=True)
 
         # Decode the QR code using pyzbar
-        # decoded_data = decode(image)
-        decoded_data = qr_reader.detect_and_decode(image=image)
+        decoded_data = decode(image)
+        # decoded_data = qr_reader.detect_and_decode(image=image)
         
         if decoded_data:
             for obj in decoded_data:
-                # qr_data = obj.data.decode('utf-8')
-                qr_data = obj
+                qr_data = obj.data.decode('utf-8')
+                # qr_data = obj
                 st.success(f"Decoded Data: {qr_data}")
         else:
             st.warning("No QR Code detected.")
@@ -47,13 +47,13 @@ elif option == "Take a picture from camera":
         st.image(image, caption="Captured QR Code")
 
         # Decode the QR code using pyzbar
-        # decoded_data = decode(image)
-        decoded_data = qr_reader.detect_and_decode(image=image)
+        decoded_data = decode(image)
+        # decoded_data = qr_reader.detect_and_decode(image=image)
         
         if decoded_data:
             for obj in decoded_data:
-                # qr_data = obj.data.decode('utf-8')
-                qr_data = obj
+                qr_data = obj.data.decode('utf-8')
+                # qr_data = obj
                 st.success(f"Decoded Data: {qr_data}")
         else:
             st.warning("No QR Code detected.")
