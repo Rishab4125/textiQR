@@ -13,7 +13,7 @@ option = st.radio("Choose an option", ("Upload an image", "Take a picture from c
 col1, col2 = st.columns([3, 3])  # Larger width for the camera input
 
 # QReader Object
-qr_reader = QReader()
+# qr_reader = QReader()
 
 if option == "Upload an image":
     # File uploader for the QR code image
