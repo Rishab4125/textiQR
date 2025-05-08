@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import tempfile
+import cv2
 
 # from pyzbar.pyzbar import decode
 import my_qrdet
