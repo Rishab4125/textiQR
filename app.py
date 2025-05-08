@@ -1,12 +1,13 @@
 import streamlit as st
 import os
 import tempfile
-# from pyzbar.pyzbar import decode
-from qreader import QReader
-from PIL import Image
 
 #setting temprary file
 os.environ["QRDET_CACHE_DIR"] = tempfile.gettempdir()
+
+# from pyzbar.pyzbar import decode
+from qreader import QReader
+from PIL import Image
 
 # Title of the app
 st.title("QR Code Scanner - Upload or Camera")
