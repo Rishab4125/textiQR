@@ -1,6 +1,6 @@
 import streamlit as st
-from pyzbar.pyzbar import decode
-# from qreader import QReader
+# from pyzbar.pyzbar import decode
+from qreader import QReader
 from PIL import Image
 
 # Title of the app
@@ -13,7 +13,7 @@ option = st.radio("Choose an option", ("Upload an image", "Take a picture from c
 col1, col2 = st.columns([3, 3])  # Larger width for the camera input
 
 # QReader Object
-# qr_reader = QReader()
+qr_reader = QReader()
 
 if option == "Upload an image":
     # File uploader for the QR code image
@@ -25,8 +25,8 @@ if option == "Upload an image":
         st.image(image, caption="Uploaded QR Code", use_column_width=True)
 
         # Decode the QR code using pyzbar
-        decoded_data = decode(image)
-        # decoded_data = qr_reader.detect_and_decode(image=image)
+        # decoded_data = decode(image)
+        decoded_data = qr_reader.detect_and_decode(image=image)
         
         if decoded_data:
             for obj in decoded_data:
@@ -47,8 +47,8 @@ elif option == "Take a picture from camera":
         st.image(image, caption="Captured QR Code")
 
         # Decode the QR code using pyzbar
-        decoded_data = decode(image)
-        # decoded_data = qr_reader.detect_and_decode(image=image)
+        # decoded_data = decode(image)
+        decoded_data = qr_reader.detect_and_decode(image=image)
         
         if decoded_data:
             for obj in decoded_data:
