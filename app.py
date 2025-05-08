@@ -2,14 +2,9 @@ import streamlit as st
 import os
 import tempfile
 
-#setting temprary file
-os.environ["QRDET_CACHE_DIR"] = tempfile.gettempdir()
-
 # from pyzbar.pyzbar import decode
-from qreader import QReader
+from src import QReader
 from PIL import Image
-
-print("QRDET_CACHE_DIR:", os.getenv("QRDET_CACHE_DIR"))
 
 # Title of the app
 st.title("QR Code Scanner - Upload or Camera")
@@ -21,7 +16,7 @@ option = st.radio("Choose an option", ("Upload an image", "Take a picture from c
 col1, col2 = st.columns([3, 3])  # Larger width for the camera input
 
 # QReader Object
-qr_reader = QReader()
+qreader = QReader()
 
 if option == "Upload an image":
     # File uploader for the QR code image
@@ -34,7 +29,7 @@ if option == "Upload an image":
 
         # Decode the QR code using pyzbar
         # decoded_data = decode(image)
-        decoded_data = qr_reader.detect_and_decode(image=image)
+        decoded_data = qreader.detect_and_decode(image=image)
         
         if decoded_data:
             for obj in decoded_data:
@@ -56,7 +51,7 @@ elif option == "Take a picture from camera":
 
         # Decode the QR code using pyzbar
         # decoded_data = decode(image)
-        decoded_data = qr_reader.detect_and_decode(image=image)
+        decoded_data = qreader.detect_and_decode(image=image)
         
         if decoded_data:
             for obj in decoded_data:
