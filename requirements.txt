@@ -2,3 +2,4 @@ streamlit
 qreader
 pillow
 pyzbar
+qrdet
