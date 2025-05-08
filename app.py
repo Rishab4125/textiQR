@@ -11,7 +11,7 @@ from PIL import Image
 st.title("QR Code Scanner - Upload or Camera")
 
 # Option to either upload an image or take a picture
-option = st.radio("Choose an option", ("Upload an image", "Take a picture from camera"))
+option = st.radio("Choose an option", ("Take a picture from camera", "Upload an image"))
 
 # Layout to display options
 # col1, col2 = st.columns([3, 3])  # Larger width for the camera input
@@ -19,31 +19,31 @@ option = st.radio("Choose an option", ("Upload an image", "Take a picture from c
 # QReader Object
 qreader = my_qrdet.QReader()
 
-# if option == "Take a picture from camera":
+if option == "Take a picture from camera":
     # with col2:  # Use col2 (larger column) for the camera
         # Camera input widget
-camera_image = st.camera_input("Capture a QR Code")
-
-if camera_image:
-    # Load and display the captured image
-    image = Image.open(camera_image)
-    image = my_qrdet._prepare_input(source = image)
-    st.image(image, caption="Captured QR Code")
-
-    # Decode the QR code using pyzbar
-    # decoded_data = decode(image)
-    decoded_data = qreader.detect_and_decode(image=image)
+    camera_image = st.camera_input("Capture a QR Code")
     
-    if decoded_data:
-        # for obj in decoded_data:
-        #     qr_data = obj.data.decode('utf-8')
-        #     # qr_data = obj
-        #     st.success(f"Decoded Data: {qr_data}")
-        st.success(f"Decoded Data: {decoded_data}")
-    else:
-        st.warning("No QR Code detected.")
+    if camera_image:
+        # Load and display the captured image
+        image = Image.open(camera_image)
+        image = my_qrdet._prepare_input(source = image)
+        st.image(image, caption="Captured QR Code")
+    
+        # Decode the QR code using pyzbar
+        # decoded_data = decode(image)
+        decoded_data = qreader.detect_and_decode(image=image)
+        
+        if decoded_data:
+            # for obj in decoded_data:
+            #     qr_data = obj.data.decode('utf-8')
+            #     # qr_data = obj
+            #     st.success(f"Decoded Data: {qr_data}")
+            st.success(f"Decoded Data: {decoded_data}")
+        else:
+            st.warning("No QR Code detected.")
 
-if option == "Upload an image":
+elif option == "Upload an image":
     # File uploader for the QR code image
     uploaded_file = st.file_uploader("Upload a QR Code image", type=["png", "jpg", "jpeg"])
     
