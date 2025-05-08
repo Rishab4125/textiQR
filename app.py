@@ -27,7 +27,6 @@ if option == "Upload an image":
         # Load and display the uploaded image
         image = Image.open(uploaded_file)
         image = my_qrdet._prepare_input(source = image)
-        # image = cv2.imread(uploaded_file)
         st.image(image, caption="Uploaded QR Code", use_container_width=True)
 
         # Decode the QR code using pyzbar
