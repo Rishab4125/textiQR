@@ -3,7 +3,7 @@ import os
 import tempfile
 
 # from pyzbar.pyzbar import decode
-from src import QReader
+import src
 from PIL import Image
 
 # Title of the app
@@ -16,7 +16,7 @@ option = st.radio("Choose an option", ("Upload an image", "Take a picture from c
 col1, col2 = st.columns([3, 3])  # Larger width for the camera input
 
 # QReader Object
-qreader = QReader()
+qreader = src.QReader()
 
 if option == "Upload an image":
     # File uploader for the QR code image
