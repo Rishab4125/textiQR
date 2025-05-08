@@ -11,10 +11,10 @@ from PIL import Image
 st.title("QR Code Scanner - Upload or Camera")
 
 # Option to either upload an image or take a picture
-option = st.radio("Choose an option", ("Take a picture from camera", "Upload an image"))
+option = st.radio("Choose an option", ("Upload an image", "Take a picture from camera"))
 
 # Layout to display options
-# col1, col2 = st.columns([3, 3])  # Larger width for the camera input
+col1, col2 = st.columns([3, 3])  # Larger width for the camera input
 
 # QReader Object
 qreader = my_qrdet.QReader()
