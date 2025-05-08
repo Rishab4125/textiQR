@@ -9,6 +9,8 @@ os.environ["QRDET_CACHE_DIR"] = tempfile.gettempdir()
 from qreader import QReader
 from PIL import Image
 
+print("QRDET_CACHE_DIR:", os.getenv("QRDET_CACHE_DIR"))
+
 # Title of the app
 st.title("QR Code Scanner - Upload or Camera")
 
