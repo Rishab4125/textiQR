@@ -14,22 +14,21 @@ st.title("QR Code Scanner - Upload or Camera")
 option = st.radio("Choose an option", ("Upload an image", "Take a picture from camera"))
 
 # Layout to display options
-col1, col2 = st.columns([3, 3])  # Larger width for the camera input
+col1, col2 = st.columns([10, 3])  # Larger width for the camera input
 
 # QReader Object
 qreader = my_qrdet.QReader()
 
-if option == "Take a picture from camera":
-    # with col2:  # Use col2 (larger column) for the camera
-        # Camera input widget
-    camera_image = st.camera_input("Capture a QR Code")
+if option == "Upload an image":
+    # File uploader for the QR code image
+    uploaded_file = st.file_uploader("Upload a QR Code image", type=["png", "jpg", "jpeg"])
     
-    if camera_image:
-        # Load and display the captured image
-        image = Image.open(camera_image)
+    if uploaded_file:
+        # Load and display the uploaded image
+        image = Image.open(uploaded_file)
         image = my_qrdet._prepare_input(source = image)
-        st.image(image, caption="Captured QR Code")
-    
+        st.image(image, caption="Uploaded QR Code", use_container_width=True)
+
         # Decode the QR code using pyzbar
         # decoded_data = decode(image)
         decoded_data = qreader.detect_and_decode(image=image)
@@ -43,16 +42,17 @@ if option == "Take a picture from camera":
         else:
             st.warning("No QR Code detected.")
 
-elif option == "Upload an image":
-    # File uploader for the QR code image
-    uploaded_file = st.file_uploader("Upload a QR Code image", type=["png", "jpg", "jpeg"])
+elif option == "Take a picture from camera":
+    # with col2:  # Use col2 (larger column) for the camera
+        # Camera input widget
+    camera_image = st.camera_input("Capture a QR Code")
     
-    if uploaded_file:
-        # Load and display the uploaded image
-        image = Image.open(uploaded_file)
+    if camera_image:
+        # Load and display the captured image
+        image = Image.open(camera_image)
         image = my_qrdet._prepare_input(source = image)
-        st.image(image, caption="Uploaded QR Code", use_container_width=True)
-
+        st.image(image, caption="Captured QR Code")
+    
         # Decode the QR code using pyzbar
         # decoded_data = decode(image)
         decoded_data = qreader.detect_and_decode(image=image)
