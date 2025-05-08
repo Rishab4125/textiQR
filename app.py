@@ -14,7 +14,7 @@ st.title("QR Code Scanner - Upload or Camera")
 option = st.radio("Choose an option", ("Upload an image", "Take a picture from camera"))
 
 # Layout to display options
-col1, col2 = st.columns([3, 3])  # Larger width for the camera input
+# col1, col2 = st.columns([3, 3])  # Larger width for the camera input
 
 # QReader Object
 qreader = my_qrdet.QReader()
