@@ -39,7 +39,7 @@ if option == "Upload an image":
             #     qr_data = obj.data.decode('utf-8')
             #     # qr_data = obj
             #     st.success(f"Decoded Data: {qr_data}")
-            st.sucess(f"Decoded Data: {decoded_data}")
+            st.success(f"Decoded Data: {decoded_data}")
         else:
             st.warning("No QR Code detected.")
 
@@ -51,6 +51,7 @@ elif option == "Take a picture from camera":
     if camera_image:
         # Load and display the captured image
         image = Image.open(camera_image)
+        image = my_qrdet._prepare_input(source = image)
         st.image(image, caption="Captured QR Code")
 
         # Decode the QR code using pyzbar
@@ -62,7 +63,7 @@ elif option == "Take a picture from camera":
             #     qr_data = obj.data.decode('utf-8')
             #     # qr_data = obj
             #     st.success(f"Decoded Data: {qr_data}")
-            st.sucess(f"Decoded Data: {decoded_data}")
+            st.success(f"Decoded Data: {decoded_data}")
         else:
             st.warning("No QR Code detected.")
 
