@@ -42,6 +42,7 @@ if option == "Upload an image":
             # if you want to use st.write
             all_data = "\n".join(f"{i}. {qr_data.replace("$", "\\$")}" for i, qr_data in enumerate(decoded_data, start=1))
             st.success(f"Decoded Data:\n{all_data}")
+            # st.write(f"Decoded Data:\n{all_data}")
 
         
         else:
@@ -68,8 +69,9 @@ elif option == "Take a picture from camera":
             # st.success(f"Decoded Data:\n{all_data}")
 
             # if you want to use st.write
-            all_data = "\n".join(f"{i}. st.text({qr_data.replace("$", "\\$")})" for i, qr_data in enumerate(decoded_data, start=1))
-            st.write(f"Decoded Data:\n{all_data}")
+            all_data = "\n".join(f"{i}. {qr_data.replace("$", "\\$")}" for i, qr_data in enumerate(decoded_data, start=1))
+            st.success(f"Decoded Data:\n{all_data}")
+            # st.write(f"Decoded Data:\n{all_data}")
         else:
             st.warning("No QR Code detected.")
 
