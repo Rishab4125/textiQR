@@ -41,7 +41,7 @@ if option == "Upload an image":
 
             # if you want to use st.write
             all_data = "\n".join(f"{i},. {qr_data.replace("$", "\\$")}" for i, str(qr_data) in enumerate(decoded_data, start=1))
-            st.write(f"Decoded Data:\n{all_data}")
+            st.success(f"Decoded Data:\n{all_data}")
 
         
         else:
