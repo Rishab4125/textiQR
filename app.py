@@ -34,9 +34,12 @@ if option == "Upload an image":
         decoded_data = qreader.detect_and_decode(image=image)
         
         if decoded_data:
-            # st.success(f"Decoded Data: {decoded_data}")
-            # st.success(f"Decoded Data:\n", (qr_data, "\n") for qr_data in decoded_data)
-            all_data = "\n".join(f"{i}. str({qr_data.replace("$", "\\$")})" for i, qr_data in enumerate(decoded_data, start=1))
+            # if you want to use st.success
+            # all_data = "\n".join(f"{i}. str({qr_data.replace("$", "\\$")})" for i, qr_data in enumerate(decoded_data, start=1))
+            # st.success(f"Decoded Data:\n{all_data}")
+
+            # if you want to use st.write
+            all_data = "\n".join(f"{i}. st.text({qr_data.replace("$", "\\$")})" for i, qr_data in enumerate(decoded_data, start=1))
             st.write(f"Decoded Data:\n{all_data}")
 
         
@@ -59,10 +62,13 @@ elif option == "Take a picture from camera":
         decoded_data = qreader.detect_and_decode(image=image)
         
         if decoded_data:
-            # st.success(f"Decoded Data: {decoded_data}")
-            # st.success(f"Decoded Data:\n", (qr_data, "\n") for qr_data in decoded_data)
+            # if you want to use st.success
+            # all_data = "\n".join(f"{i}. str({qr_data.replace("$", "\\$")})" for i, qr_data in enumerate(decoded_data, start=1))
+            # st.success(f"Decoded Data:\n{all_data}")
+
+            # if you want to use st.write
             all_data = "\n".join(f"{i}. st.text({qr_data.replace("$", "\\$")})" for i, qr_data in enumerate(decoded_data, start=1))
-            st.success(f"Decoded Data:\n{all_data}")
+            st.write(f"Decoded Data:\n{all_data}")
         else:
             st.warning("No QR Code detected.")
 
