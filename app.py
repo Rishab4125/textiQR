@@ -36,7 +36,7 @@ if option == "Upload an image":
         if decoded_data:
             # st.success(f"Decoded Data: {decoded_data}")
             # st.success(f"Decoded Data:\n", (qr_data, "\n") for qr_data in decoded_data)
-            all_data = "\n".join(f"{i}. st.text({qr_data.replace("$", "\\$")})" for i, qr_data in enumerate(decoded_data, start=1))
+            all_data = "\n".join(f"{i}. str({qr_data.replace("$", "\\$")})" for i, qr_data in enumerate(decoded_data, start=1))
             st.success(f"Decoded Data:\n{all_data}")
 
         
