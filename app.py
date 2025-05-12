@@ -40,7 +40,7 @@ if option == "Upload an image":
             # st.success(f"Decoded Data:\n{all_data}")
 
             # if you want to use st.write
-            all_data = "\n".join({i},". ",st.text({qr_data.replace("$", "\\$")}) for i, qr_data in enumerate(decoded_data, start=1))
+            all_data = "\n".join(f"{i},. {qr_data.replace("$", "\\$")}" for i, str(qr_data) in enumerate(decoded_data, start=1))
             st.write(f"Decoded Data:\n{all_data}")
 
         
