@@ -34,6 +34,10 @@ if option == "Upload an image":
         decoded_data = qreader.detect_and_decode(image=image)
         
         if decoded_data:
+            st.markdown(
+                f"<p style='color:black; font-size:16px;'>Decoded Data {i}:<br>{qr_data}</p>",
+                unsafe_allow_html=True
+            )
             # for qr_data in decoded_data:
                 # qr_data = obj.data.decode('utf-8')
                 # qr_data = obj
