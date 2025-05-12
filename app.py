@@ -34,11 +34,12 @@ if option == "Upload an image":
         decoded_data = qreader.detect_and_decode(image=image)
         
         if decoded_data:
-            for qr_data in decoded_data:
+            # for qr_data in decoded_data:
                 # qr_data = obj.data.decode('utf-8')
                 # qr_data = obj
-                st.success(f"Decoded Data: {qr_data}")
+                # st.success(f"Decoded Data: {qr_data}")
             # st.success(f"Decoded Data: {decoded_data}")
+            st.success(f"Decoded Data:\n", (qr_data, "\n") for qr_data in decoded_data)
         else:
             st.warning("No QR Code detected.")
 
