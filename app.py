@@ -29,7 +29,7 @@ if option == "Upload an image":
         # image = Image.open(uploaded_file)
         image_raw = Image.open(uploaded_file)
         image = my_qrdet._prepare_input(source = image_raw)
-        image = np.array(image) # Image is in RGB
+        image = np.array(image) # Image is in BGR
         # st.image(image, caption="Uploaded QR Code", use_container_width=True)
 
         # Decode the QR code using pyzbar
@@ -54,7 +54,7 @@ if option == "Upload an image":
             if decoded_data[i]:
                 cv2.rectangle(image, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), (0, 255, 0), 2)
             else:
-                cv2.rectangle(image, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), (0, 0, 255), 2)
+                cv2.rectangle(image, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), (255, 0, 0), 2)
         st.image(image, caption="Uploaded QR Code", use_container_width=True)
         
         if decoded_data:
