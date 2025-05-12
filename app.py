@@ -62,7 +62,7 @@ if option == "Upload an image":
             st.write("Decoded Data:")
             for i, qr_data in enumerate(decoded_data, start=1):
                 if qr_data:
-                    qr_data.replace("$", "\\$")}
+                    qr_data.replace("$", "\\$")
                     st.write(f"{i}, {qr_data}")
             # all_data = "\n".join(f"{i}. {qr_data.replace("$", "\\$")}" for i, qr_data in enumerate(decoded_data, start=1))
             # st.success(f"Decoded Data:\n{all_data}")
