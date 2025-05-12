@@ -25,7 +25,7 @@ if option == "Upload an image":
     
     if uploaded_file:
         # Load and display the uploaded image
-        image = cv2.imread(uploaded_file)
+        image = Image.open(uploaded_file)
         image = my_qrdet._prepare_input(source = image)
         # st.image(image, caption="Uploaded QR Code", use_container_width=True)
 
