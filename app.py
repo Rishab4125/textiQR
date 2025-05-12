@@ -29,7 +29,7 @@ if option == "Upload an image":
         # image = Image.open(uploaded_file)
         image_raw = Image.open(uploaded_file)
         image = my_qrdet._prepare_input(source = image_raw)
-        image = np.array(image)
+        image = np.array(image)[:,:,::-1] # Image is in BGR
         # st.image(image, caption="Uploaded QR Code", use_container_width=True)
 
         # Decode the QR code using pyzbar
@@ -45,7 +45,7 @@ if option == "Upload an image":
             confidence = detections[i]['confidence']
             
             # Draw the center of the bounding box
-            cv2.circle(image, (int(cxcy[0]), int(cxcy[1])), 5, (255, 0, 0), -1)
+            cv2.circle(image, (int(cxcy[0]), int(cxcy[1])), 5, (0, 0, 255), -1)
             # Draw the polygon
             # cv2.polylines(image, [np.int32(polygon_xy)], isClosed=True, color=(255, 0, 255), thickness=2) 
             # Draw the bounding box
@@ -88,11 +88,12 @@ elif option == "Take a picture from camera":
             # if you want to use st.success
             # all_data = "\n".join(f"{i}. str({qr_data.replace("$", "\\$")})" for i, qr_data in enumerate(decoded_data, start=1))
             # st.success(f"Decoded Data:\n{all_data}")
-
-            # if you want to use st.write
-            all_data = "\n".join(f"{i}. {qr_data.replace("$", "\\$")}" for i, qr_data in enumerate(decoded_data, start=1))
-            st.success(f"Decoded Data:\n{all_data}")
-            # st.write(f"Decoded Data:\n{all_data}")
+            for i, qr_data in enumerate(decoded_data, start=1):
+                if qr_data:
+                    st.markdown(f"Decoded Data {i}: :gray[{qr_data}]")
+            # all_data = "\n".join(f"{i}. {qr_data.replace("$", "\\$")}" for i, qr_data in enumerate(decoded_data, start=1))
+            # st.success(f"Decoded Data:\n{all_data}")
+            # # st.write(f"Decoded Data:\n{all_data}")
         else:
             st.warning("No QR Code detected.")
 
