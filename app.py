@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import tempfile
 import cv2
+import numpy
 
 # from pyzbar.pyzbar import decode
 import my_qrdet
@@ -28,6 +29,7 @@ if option == "Upload an image":
         # image = Image.open(uploaded_file)
         image_raw = Image.open(uploaded_file)
         image = my_qrdet._prepare_input(source = image_raw)
+        image = np.array(image)
         # st.image(image, caption="Uploaded QR Code", use_container_width=True)
 
         # Decode the QR code using pyzbar
