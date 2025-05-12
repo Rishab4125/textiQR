@@ -32,7 +32,7 @@ if option == "Upload an image":
         # Decode the QR code using pyzbar
         # decoded_data = decode(image)
         # decoded_data = qreader.detect_and_decode(image=image)
-        decoded_data, detections = qreader.detect_and_decode(image=image)
+        decoded_data, detections = qreader.detect_and_decode(image=image, return_detections = True)
 
         for i in range(len(detections)):
             bbox = detections[i]['bbox_xyxy']
