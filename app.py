@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import tempfile
 import cv2
-import numpy
+import numpy as np
 
 # from pyzbar.pyzbar import decode
 import my_qrdet
