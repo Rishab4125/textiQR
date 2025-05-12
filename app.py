@@ -47,7 +47,7 @@ if option == "Upload an image":
             # Draw the center of the bounding box
             cv2.circle(image, (int(cxcy[0]), int(cxcy[1])), 5, (0, 0, 255), -1)
             # Put Text for identification
-            cv2.putText(image,f"({i})", fontScale =2, cv2.FONT_HERSHEY_SIMPLEX, org = (int(cxcy[0]), int(cxcy[1])), thickness=2)
+            cv2.putText(image,f"({i})", fontScale =2, font = cv2.FONT_HERSHEY_SIMPLEX, org = (int(cxcy[0]), int(cxcy[1])), thickness=2)
             # Draw the polygon
             # cv2.polylines(image, [np.int32(polygon_xy)], isClosed=True, color=(255, 0, 255), thickness=2) 
             # Draw the bounding box
