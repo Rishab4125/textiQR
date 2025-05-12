@@ -27,12 +27,30 @@ if option == "Upload an image":
         # Load and display the uploaded image
         image = Image.open(uploaded_file)
         image = my_qrdet._prepare_input(source = image)
-        st.image(image, caption="Uploaded QR Code", use_container_width=True)
+        # st.image(image, caption="Uploaded QR Code", use_container_width=True)
 
         # Decode the QR code using pyzbar
         # decoded_data = decode(image)
-        decoded_data = qreader.detect_and_decode(image=image)
-        # decoded_data = decoded_data.replace("$", "\\$")
+        # decoded_data = qreader.detect_and_decode(image=image)
+        decoded_data, detections = qreader.detect_and_decode(image=image)
+
+        for i in range(len(detections)):
+            bbox = detections[i]['bbox_xyxy']
+            cxcy = detections[i]['cxcy']
+            wh = detections[i]['wh']
+            polygon_xy = detections[i]['polygon_xy']
+            confidence = detections[i]['confidence']
+            
+            # Draw the center of the bounding box
+            cv2.circle(image, (int(cxcy[0]), int(cxcy[1])), 5, (255, 0, 0), -1)
+            # Draw the polygon
+            # cv2.polylines(image, [np.int32(polygon_xy)], isClosed=True, color=(255, 0, 255), thickness=2) 
+            # Draw the bounding box
+            if decoded_data[i]:
+                cv2.rectangle(img, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), (0, 255, 0), 2)
+            else:
+                cv2.rectangle(img, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), (0, 0, 255), 2)
+        st.image(image, caption="Uploaded QR Code", use_container_width=True)
         
         if decoded_data:
             # if you want to use st.success
