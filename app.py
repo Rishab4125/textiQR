@@ -32,7 +32,7 @@ if option == "Upload an image":
         # Decode the QR code using pyzbar
         # decoded_data = decode(image)
         decoded_data = qreader.detect_and_decode(image=image)
-        decoded_data.reaplace("$", "\\$")
+        decoded_data.replace("$", "\\$")
         
         if decoded_data:
             # if you want to use st.success
