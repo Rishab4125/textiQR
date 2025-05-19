@@ -9,7 +9,8 @@ import my_qrdet
 from PIL import Image
 
 # Title of the app
-st.title("QR Code Scanner - Upload or Camera")
+st.title("TextiQR")
+st.subheader("QR Code Scanner for Textile")
 
 # Option to either upload an image or take a picture
 option = st.radio("Choose an option", ("Upload an image", "Take a picture from camera"))
@@ -45,7 +46,7 @@ if option == "Upload an image":
             confidence = detections[i]['confidence']
             
             # Draw the center of the bounding box
-            cv2.circle(image, (int(cxcy[0]), int(cxcy[1])), 5, (0, 0, 255), -1)
+            cv2.circle(image, (int(cxcy[0]), int(cxcy[1])), 5, (255, 0, 0), -1)
             # Put Text for identification
 
             # Draw the polygon
