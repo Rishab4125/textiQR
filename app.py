@@ -84,7 +84,7 @@ elif option == "Take a picture from camera":
     if camera_image:
         # Load and display the uploaded image
         # image = Image.open(uploaded_file)
-        image_raw = Image.open(uploaded_file)
+        image_raw = Image.open(camera_image)
         image = my_qrdet._prepare_input(source = image_raw)
         image = np.array(image) # Image is in BGR
         # st.image(image, caption="Uploaded QR Code", use_container_width=True)
