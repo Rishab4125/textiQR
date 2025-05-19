@@ -102,7 +102,7 @@ elif option == "Take a picture from camera":
             confidence = detections[i]['confidence']
             
             # Draw the center of the bounding box
-            cv2.circle(image, (int(cxcy[0]), int(cxcy[1])), 5, (0, 0, 255), -1)
+            cv2.circle(image, (int(cxcy[0]), int(cxcy[1])), 5, (255, 0, 0), -1)
             # Put Text for identification
 
             # Draw the polygon
