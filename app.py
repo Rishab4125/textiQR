@@ -10,10 +10,10 @@ from PIL import Image
 
 # Title of the app
 st.title("TextiQR")
-st.markdown("QR Code Scanner for Textile")
+st.subheader("QR Code Scanner for Textile")
 
 # Option to either upload an image or take a picture
-option = st.radio("Choose an option", ("Upload an image", "Take a picture from camera"))
+option = st.radio(st.subheader("Choose an option"), ("Upload an image", "Take a picture from camera"))
 
 # Layout to display options
 # col1, col2 = st.columns([3, 3])  # Larger width for the camera input
