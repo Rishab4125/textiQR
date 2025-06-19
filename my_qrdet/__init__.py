@@ -6,18 +6,6 @@ from .output_qrdet_dict_keys import BBOX_XYXY, BBOX_XYXYN, POLYGON_XY, POLYGON_X
 from ._qrdet_helpers import crop_qr, _yolo_v8_results_to_dict, _prepare_input, _plot_result
 from .my_qrdet import QRDetector
 
-
-"""
-This class implements a robust QR detector & decoder. This detector is based on YOLOv7 model on the side
-of the detection and pyzbar on the side of the decoder. It also implements different image preprocessing
-techniques. This detector will transparently combine all these techniques to maximize the detection rate
-on difficult images.
-
-Mail: eric@ericcanas.com
-Date: 02-12-2022
-Github: https://github.com/Eric-Canas
-"""
-
 import os
 import typing
 from dataclasses import dataclass
