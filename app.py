@@ -132,26 +132,3 @@ elif option == "Take a picture from camera":
         else:
             st.warning("No QR Code detected.")
 
-        # # Load and display the captured image
-        # image = Image.open(camera_image)
-        # image = my_qrdet._prepare_input(source = image)
-        # st.image(image, caption="Captured QR Code")
-    
-        # # Decode the QR code using pyzbar
-        # # decoded_data = decode(image)
-        # decoded_data = qreader.detect_and_decode(image=image)
-        
-        # if decoded_data:
-        #     # if you want to use st.success
-        #     # all_data = "\n".join(f"{i}. str({qr_data.replace("$", "\\$")})" for i, qr_data in enumerate(decoded_data, start=1))
-        #     # st.success(f"Decoded Data:\n{all_data}")
-        #     for i, qr_data in enumerate(decoded_data, start=1):
-        #         if qr_data:
-        #             st.markdown(f"Decoded Data {i}: :gray[{qr_data}]")
-        #     # all_data = "\n".join(f"{i}. {qr_data.replace("$", "\\$")}" for i, qr_data in enumerate(decoded_data, start=1))
-        #     # st.success(f"Decoded Data:\n{all_data}")
-        #     # # st.write(f"Decoded Data:\n{all_data}")
-        # else:
-        #     st.warning("No QR Code detected.")
-
-
