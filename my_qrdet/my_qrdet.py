@@ -22,7 +22,7 @@ class QRDetector:
         assert model_size in ('n', 's', 'm', 'l'), f'Invalid model size: {model_size}. ' \
                                                    f'Valid values are: \'n\', \'s\', \'m\' or \'l\'.'
         self._model_size = model_size
-        path = os.path.join(os.path.dirname(__file__), 'qrdet-s.pt')
+        path = os.path.join(os.path.dirname(__file__), 'qrdet.pt')
         self.model = YOLO(model=path, task='segment')
 
         self._conf_th = conf_th
