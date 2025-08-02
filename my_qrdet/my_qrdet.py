@@ -7,15 +7,8 @@ from PIL import Image
 from my_qrdet._qrdet_helpers import _yolo_v8_results_to_dict, _prepare_input, BBOX_XYXY, CONFIDENCE
 from ultralytics import YOLO
 
-# _WEIGHTS_FOLDER = os.path.join(os.path.dirname(__file__), '.model')
-# _CURRENT_RELEASE_TXT_FILE = os.path.join(_WEIGHTS_FOLDER, 'current_release.txt')
-# _WEIGHTS_URL_FOLDER = 'https://github.com/Eric-Canas/qrdet/releases/download/v2.0_release'
-# _MODEL_FILE_NAME = 'qrdet-{size}.pt'
-
-
 class QRDetector:
     def __init__(self, model_size: str = 's', conf_th: float = 0.5, nms_iou: float = 0.3,):
-                #  weights_folder: str = _WEIGHTS_FOLDER):
         """
         Initialize the QRDetector.
         It loads the weights of the YOLOv8 model and prepares it for inference.
@@ -29,14 +22,7 @@ class QRDetector:
         assert model_size in ('n', 's', 'm', 'l'), f'Invalid model size: {model_size}. ' \
                                                    f'Valid values are: \'n\', \'s\', \'m\' or \'l\'.'
         self._model_size = model_size
-
-        # self.weights_folder = weights_folder
-        # self.__current_release_txt_file = os.path.join(weights_folder, 'current_release.txt')
-
-        # path = self.__download_weights_or_return_path(model_size=model_size)
-        # assert os.path.exists(path), f'Could not find model weights at {path}.'
         path = os.path.join(os.path.dirname(__file__), 'qrdet-s.pt')
-        # path = "stream/qrdet-s.pt"
         self.model = YOLO(model=path, task='segment')
 
         self._conf_th = conf_th
@@ -90,59 +76,3 @@ class QRDetector:
             return tuple((result[BBOX_XYXY], result[CONFIDENCE]) for result in results)
         else:
             return tuple(result[BBOX_XYXY] for result in results)
-
-
-    # def __download_weights_or_return_path(self, model_size: str = 's', desc: str = 'Downloading weights...') -> None:
-    #     """
-    #     Download the weights of the YoloV8 QR Segmentation model.
-    #     :param model_size: str. The size of the model to download. Can be 's', 'm' or 'l'. Default: 's'.
-    #     :param desc: str. The description of the download. Default: 'Downloading weights...'.
-    #     """
-    #     self.downloading_model = True
-    #     path = os.path.join(self.weights_folder, _MODEL_FILE_NAME.format(size=model_size))
-    #     if os.path.isfile(path):
-    #         if os.path.isfile(self.__current_release_txt_file):
-    #             # Compare the current release with the actual release URL
-    #             with open(self.__current_release_txt_file, 'r') as file:
-    #                 current_release = file.read()
-    #             # If the current release is the same as the URL, the weights are already downloaded.
-    #             if current_release == _WEIGHTS_URL_FOLDER:
-    #                 self.downloading_model = False
-    #                 return path
-    #     # Create the directory to save the weights.
-    #     elif not os.path.exists(self.weights_folder):
-    #         os.makedirs(self.weights_folder)
-
-    #     url = f"{_WEIGHTS_URL_FOLDER}/{_MODEL_FILE_NAME.format(size=model_size)}"
-
-    #     # Download the weights.
-    #     from warnings import warn
-    #     warn("QRDetector has been updated to use the new YoloV8 model. Use legacy=True when calling detect "
-    #          "for backwards compatibility with 1.x versions. Or update to new output (new output is a tuple of dicts, "
-    #          "containing several new information (1.x output is accessible through 'bbox_xyxy' and 'confidence')."
-    #          "Forget this message if you are reading it from QReader. [This is a first download warning and will be removed at 2.1]")
-    #     response = requests.get(url, stream=True)
-    #     total_size_in_bytes = int(response.headers.get('content-length', 0))
-    #     with tqdm.tqdm(total=total_size_in_bytes, unit='iB', unit_scale=True, desc=desc) as progress_bar:
-    #         with open(path, 'wb') as file:
-    #             for data in response.iter_content(chunk_size=1024):
-    #                 progress_bar.update(len(data))
-    #                 file.write(data)
-    #     # Save the current release URL
-    #     with open(self.__current_release_txt_file, 'w') as file:
-    #         file.write(_WEIGHTS_URL_FOLDER)
-    #     # Check the weights were downloaded correctly.
-    #     if total_size_in_bytes != 0 and progress_bar.n != total_size_in_bytes:
-    #         # Delete the weights if the download failed.
-    #         os.remove(path)
-    #         raise EOFError('Error, something went wrong while downloading the weights.')
-
-    #     self.downloading_model = False
-    #     return path
-
-    # def __del__(self):
-    #     if hasattr(self, 'weights_folder'):
-    #         path = os.path.join(self.weights_folder, _MODEL_FILE_NAME.format(size=self._model_size))
-    #         # If the weights didn't finish downloading, delete them.
-    #         if hasattr(self, 'downloading_model') and self.downloading_model and os.path.isfile(path):
-    #             os.remove(path)
