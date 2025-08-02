@@ -35,7 +35,7 @@ class QRDetector:
 
         # path = self.__download_weights_or_return_path(model_size=model_size)
         # assert os.path.exists(path), f'Could not find model weights at {path}.'
-        path = os.path.join(os.path.dirname(__file__), 'qrdet.pt')
+        path = os.path.join(os.path.dirname(__file__), 'qrdet-s.pt')
         # path = "stream/qrdet-s.pt"
         self.model = YOLO(model=path, task='segment')
 
